@@ -1,7 +1,5 @@
 --I started by doing some data cleansing on SQL:
 
 
-ALTER TABLE dbo.NYC_airbnb
-  DROP column name, host_id, host_name, last_review, description, neighborhood_overview, picture_url, host_is_superhost, host_verifications, amenities
-  
+
   
