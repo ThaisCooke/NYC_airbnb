@@ -1,5 +1,15 @@
 --I started by doing some data cleansing on SQL:
 
-
+ALTER TABLE listings
+  DROP column name, last_review, reviews_per_month, license
+  
+  --Grouping by neighbourhoods:
+  
+  SELECT neighbourhood_group, neighbourhood
+  FROM listings
+  GROUP BY neighbourhood_group, neighbourhood
+  ORDER BY neighbourhood_group
+  
+  
 
   
