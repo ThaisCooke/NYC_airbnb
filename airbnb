@@ -3,11 +3,19 @@
 ALTER TABLE listings
   DROP column name, last_review, reviews_per_month, license
   
-  --Grouping by neighbourhoods:
   
-  SELECT neighbourhood_group, neighbourhood
+  --Grouping by price per neighbourhood_group:
+  
+  SELECT DISTINCT neighbourhood_group, AVG (price) AS avg_price
   FROM listings
-  GROUP BY neighbourhood_group, neighbourhood
+GROUP BY neighbourhood_group
+  
+  
+  --Grouping by neighbourhoods and price:
+  
+  SELECT DISTINCT neighbourhood, neighbourhood_group, 
+AVG (price) OVER (PARTITION BY neighbourhood) AS avg_price
+  FROM listings
   ORDER BY neighbourhood_group
   
   
