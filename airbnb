@@ -1,4 +1,4 @@
---I started by doing some data cleansing on SQL:
+--I started by doing some data cleansing on SQL, by eliminating the columns that were not being used in the analysis:
 
 ALTER TABLE listings
   DROP column name, last_review, reviews_per_month, license
@@ -18,6 +18,24 @@ AVG (price) OVER (PARTITION BY neighbourhood) AS avg_price
   FROM listings
   ORDER BY neighbourhood_group
   
+  
+  
+  -- Counting number of aibnb per neighbouhood:
+  
+  SELECT DISTINCT neighbourhood, neighbourhood_group, 
+COUNT (id) AS number_of_airbnb
+  FROM listings
+GROUP BY neighbourhood, neighbourhood_group
+HAVING neighbourhood = 'Fort Wadsworth' 
+OR neighbourhood = 'Tribeca' 
+OR neighbourhood = 'Prospect Park' 
+OR neighbourhood = 'Theater District' 
+OR neighbourhood = 'Flatiron District' 
+OR neighbourhood = 'Midtown' 
+OR neighbourhood = 'Port Richmond' 
+OR neighbourhood = 'Soho' 
+OR neighbourhood = 'Riverdale' 
+ORDER BY number_of_airbnb
   
 
   
