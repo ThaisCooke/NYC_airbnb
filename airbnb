@@ -37,5 +37,11 @@ OR neighbourhood = 'Soho'
 OR neighbourhood = 'Riverdale' 
 ORDER BY number_of_airbnb
   
-
+  
+-- Counting number of Airbnb per neighbourhood:
+SELECT TOP 10 neighbourhood, neighbourhood_group, COUNT (id) AS number_of_airbnb
+  FROM listings
+  GROUP BY neighbourhood, neighbourhood_group
+  HAVING COUNT (id) >= 160
+  ORDER BY neighbourhood DESC;
   
