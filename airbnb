@@ -48,7 +48,6 @@ SELECT TOP 10 neighbourhood, neighbourhood_group, COUNT (id) AS number_of_airbnb
   
   -- Price per neighbourhood, considering number of Airbnb available: (fix this)
   
-  SELECT TOP 10 neighbourhood, neighbourhood_group, 
 SELECT TOP 10 neighbourhood, neighbourhood_group, 
 AVG (price) OVER (PARTITION BY neighbourhood) AS avg_price, COUNT (id) OVER (PARTITION BY neighbourhood) AS number_of_airbnb
   FROM listings
