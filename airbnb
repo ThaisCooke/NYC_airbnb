@@ -46,10 +46,15 @@ SELECT TOP 10 neighbourhood, neighbourhood_group, COUNT (id) AS number_of_airbnb
   ORDER BY neighbourhood DESC;
   
   
-  -- Price per neighbourhood, considering number of Airbnb available: (fix this)
+  -- Price per neighbourhood, considering number of Airbnb available: (I had to manually eliminate Airbnb that had a count of less than 10 in the area, for comparison)
   
-SELECT TOP 10 neighbourhood, neighbourhood_group, 
+SELECT DISTINCT TOP 5 neighbourhood, neighbourhood_group, 
 AVG (price) OVER (PARTITION BY neighbourhood) AS avg_price, COUNT (id) OVER (PARTITION BY neighbourhood) AS number_of_airbnb
   FROM listings
   GROUP BY price, neighbourhood, neighbourhood_group, id
-  ORDER BY price DESC
+  HAVING neighbourhood <> 'Fort Wadsworth'
+  AND neighbourhood <> 'Broad channel'
+  AND neighbourhood <> 'Prospect Park'
+  AND neighbourhood <> 'Sea Gate'
+  AND neighbourhood <> 'Port Richmond'
+  ORDER BY avg_price DESC, number_of_airbnb
