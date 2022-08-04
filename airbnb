@@ -58,3 +58,28 @@ AVG (price) OVER (PARTITION BY neighbourhood) AS avg_price, COUNT (id) OVER (PAR
   AND neighbourhood <> 'Sea Gate'
   AND neighbourhood <> 'Port Richmond'
   ORDER BY avg_price DESC, number_of_airbnb
+
+
+-- Number of Room Types available:
+
+SELECT room_type, COUNT (room_type) AS number_of_airbnb
+  FROM listings
+  GROUP BY room_type
+  ORDER BY room_type DESC
+  
+  
+  -- Average price and number of airbnb available per room type:
+  
+  SELECT DISTINCT room_type, 
+AVG (price) OVER (PARTITION BY room_type) AS avg_price, COUNT (id) OVER (PARTITION BY room_type) AS number_of_airbnb
+  FROM listings
+  GROUP BY price, room_type, id
+  ORDER BY avg_price DESC, number_of_airbnb
+  
+  
+  -- Average price per room type in each neighbourhood group:
+  
+  SELECT DISTINCT neighbourhood_group, room_type, AVG (price) AS avg_price
+FROM listings
+GROUP BY room_type, neighbourhood_group
+ORDER BY neighbourhood_group, room_type
