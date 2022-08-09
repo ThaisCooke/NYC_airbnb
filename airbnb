@@ -83,3 +83,9 @@ AVG (price) OVER (PARTITION BY room_type) AS avg_price, COUNT (id) OVER (PARTITI
 FROM listings
 GROUP BY room_type, neighbourhood_group
 ORDER BY neighbourhood_group, room_type
+
+-- Availability throughout the year:
+
+SELECT DISTINCT neighbourhood_group, AVG (availability_365) AS availability
+  FROM listings
+  GROUP BY neighbourhood_group
