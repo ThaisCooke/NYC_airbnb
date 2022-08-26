@@ -1,4 +1,4 @@
---I started by doing some data cleansing on SQL, by eliminating the columns that were not being used in the analysis:
+--I started doing some data cleaning on SQL, by eliminating the columns that were not being used in the analysis:
 
 ALTER TABLE listings
   DROP column name, last_review, reviews_per_month, license
